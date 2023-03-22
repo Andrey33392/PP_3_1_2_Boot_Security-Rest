@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update User</title>
+</head>
+<body>
+
+<form th:method="PATCH" th:action="@{/edit_user/{id}(id=${user.id})}" th:object="${user}">
+
+
+    <label for="id">id</label>
+    <input type="hidden" th:field="*{id}" id="id"/>
+    <!--        <div style="color: brown" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">error</div>-->
+    <br>
+    <label for="name">Name</label>
+    <input type="text" th:field="*{name}" id="name"/>
+    <!--        <div style="color: brown" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">error</div>-->
+    <br>
+    <label for="email">Email</label>
+    <input type="email" th:field="*{email}" id="email"/>
+    <!--        <div style="color: brown" th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastName}">error</div>-->
+    <br>
+    <label for="age">Age</label>
+    <input type="text" th:field="*{age}" id="age"/>
+    <!--        <div style="color: brown" th:if="${#fields.hasErrors('age')}" th:errors="*{age}">error</div>-->
+    <br>
+    <label for="password">Password</label>
+    <input type="password" th:field="*{password}" id="password"/>
+
+    <div style="color: brown" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">error</div>
+    <br>
+    <th:block th:each="role: ${listRoles}">
+        <input type="checkbox" th:field="*{roles}"
+               th:text="${role.name}" th:value="${role.id}" class="m-2" />
+    </th:block>
+<!--    <td>-->
+<!--        <label>Roles:-->
+<!--            <select size="1" multiple name="listRoles" required="required">-->
+<!--                <option selected="selected" value="1">USER</option>-->
+
+<!--            </select>-->
+<!--        </label>-->
+        <br>
+        <input type="submit" value="Update User"/>
+
+</form>
+</body>
+</html>
